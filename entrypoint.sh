@@ -6,6 +6,8 @@ DB_TYPE=sqlite
 if [ ! -f "${CFG_FILE}" ]
 then
     kallithea-cli config-create ${CFG_FILE} host=0.0.0.0
+    [ ${DB_TYPE} = "sqlite" ] && sed -i \ 
+        's#^sqlalchemy\.url = .*#sqlalchemy.url = sqlite:///%(here)s/cfg/kallithea.db?timeout=60#g' ${CFG_FILE}
 fi
 if [ ! -f "/opt/kallithea/kallithea.db" ]
 then
