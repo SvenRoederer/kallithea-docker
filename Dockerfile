@@ -14,13 +14,12 @@ RUN pip3 install \
       mercurial backlash gearbox WebHelpers2 paginate-sqlalchemy paginate ipaddr \
       gearbox TurboGears2 tgext.routes celery beaker
 RUN npm install npm@latest -g
-RUN pip3 install kallithea==0.6.0
+RUN pip3 install kallithea==0.6.1
 RUN mkdir -p /opt/kallithea/data \
       && mkdir -p /opt/kallithea/repos \
       && mkdir -p /opt/kallithea/cfg
 
 ADD ./entrypoint.sh /entrypoint.sh
-ADD ./kallithea060_mysql.patch /opt/kallithea/kallithea060_mysql.patch
 
 CMD ["/entrypoint.sh"]
 VOLUME ["/opt/kallithea/repos","/opt/kallithea/data","/opt/kallithea/cfg"]
