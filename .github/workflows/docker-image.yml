@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: define Docker tag
-      run: echo "dockertag=my-image-name:git-$(date +%s)" >>$GITHUB_ENV
+      run: echo "dockertag=my-image-name:git-$(git describe --always)" >>$GITHUB_ENV
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag ${{ env.dockertag }}
     - name: save image
