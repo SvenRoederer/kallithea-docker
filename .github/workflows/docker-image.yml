@@ -17,7 +17,7 @@ jobs:
     - name: define Docker tag
       run: echo "dockertag=my-image-name:$(git describe --always)"
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag git-$env:dockertag
+      run: docker build . --file Dockerfile --tag git-${{ env:dockertag }}
     - name: save image
       run: docker save -o ./image ${dockertag}
     - name: Upload image
