@@ -19,7 +19,7 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag ${{ env.dockertag }}
     - name: save image
-      run: docker save -o ./image ${dockertag}
+      run: docker save -o ./image ${{ env.dockertag }}
     - name: Upload image
       uses: actions/upload-artifact@v1
       with:
